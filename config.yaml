@@ -1,0 +1,97 @@
+# Logging configuration
+logging:
+  level: INFO
+  format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+  file: logs/ai_orchestration.log
+
+# Data collection settings
+data_collection:
+  max_pages: 5
+  timeout: 30
+  max_retries: 3
+  user_agent: 'AI Battlecard Generator/1.0'
+  rate_limit: 1  # requests per second
+
+# Data cleaning settings
+data_cleaning:
+  min_text_length: 50
+  max_text_length: 10000
+  min_sentences: 2
+  similarity_threshold: 0.8
+  min_feature_freq: 2
+
+# NLP summarization settings
+nlp_summarization:
+  spacy_model: en_core_web_sm
+  model: facebook/bart-large-cnn
+  device: -1  # -1 for CPU, >= 0 for GPU
+  max_length: 130
+  min_length: 30
+  chunk_size: 1000
+
+# Product analysis settings
+product_analysis:
+  similarity_threshold: 0.3
+  min_feature_freq: 2
+  feature_categories:
+    - Performance
+    - Security
+    - Scalability
+    - Integration
+    - Support
+    - Pricing
+
+# Insights generation settings
+insights_generation:
+  min_cluster_size: 3
+  n_clusters: 5
+  min_trend_frequency: 2
+  priority_weights:
+    High: 3
+    Medium: 2
+    Low: 1
+
+# Battlecard generation settings
+battlecard_generation:
+  template: standard
+  sections:
+    - overview
+    - competitive_analysis
+    - strengths_weaknesses
+    - pricing_comparison
+    - objection_handling
+    - winning_strategies
+
+# API settings
+api:
+  host: 0.0.0.0
+  port: 8000
+  workers: 4
+  timeout: 300
+  cors_origins:
+    - http://localhost:3000
+    - http://localhost:8000
+  rate_limit:
+    requests: 100
+    period: 3600  # 1 hour
+
+# Cache settings
+cache:
+  type: memory  # memory or redis
+  ttl: 3600  # 1 hour
+  max_size: 1000
+
+# Storage settings
+storage:
+  type: file  # file or s3
+  path: data/battlecards
+  format: json
+
+# Security settings
+security:
+  api_key_header: X-API-Key
+  rate_limiting: true
+  ssl_verify: true
+  allowed_domains:
+    - example.com
+    - competitor.com 

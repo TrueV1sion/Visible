@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - ./data:/app/data
+      - ./logs:/app/logs
+    environment:
+      - ENVIRONMENT=development
+      - LOG_LEVEL=DEBUG
+      - CONFIG_FILE=/app/config.yaml
+    command: uvicorn ai_orchestration.api:app --host 0.0.0.0 --port 8000 --reload
+    networks:
+      - battlecard-network
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:6-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - battlecard-network
+
+  jupyter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/app
+      - ./notebooks:/app/notebooks
+    environment:
+      - ENVIRONMENT=development
+      - CONFIG_FILE=/app/config.yaml
+    command: jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token=''
+    networks:
+      - battlecard-network
+    depends_on:
+      - api
+
+volumes:
+  redis-data:
+
+networks:
+  battlecard-network:
+    driver: bridge 

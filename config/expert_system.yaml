@@ -1,0 +1,93 @@
+# Expert System Agent Configuration
+
+# Scoring weights for different criteria
+weights:
+  features: 0.3
+  market_presence: 0.2
+  customer_sentiment: 0.15
+  pricing: 0.15
+  innovation: 0.1
+  support: 0.1
+
+# Market segment definitions
+market_segments:
+  enterprise:
+    min_price: 1000
+    required_features:
+      - security
+      - compliance
+      - scalability
+      - support_sla
+    target_industries:
+      - finance
+      - healthcare
+      - government
+    
+  mid_market:
+    min_price: 100
+    required_features:
+      - api_access
+      - basic_security
+      - standard_support
+    target_industries:
+      - technology
+      - retail
+      - manufacturing
+    
+  smb:
+    min_price: 0
+    required_features: []
+    target_industries:
+      - small_business
+      - startups
+      - local_services
+
+# Scoring thresholds for recommendations
+thresholds:
+  feature_gap: 0.6
+  market_presence: 0.4
+  customer_sentiment: 0.5
+  market_fit: 0.8
+
+# Feature importance weights
+feature_weights:
+  security: 1.2
+  compliance: 1.1
+  scalability: 1.0
+  api_access: 0.9
+  support_sla: 0.8
+  basic_security: 0.7
+  standard_support: 0.6
+
+# Market presence factors
+market_presence:
+  share_weight: 0.4
+  growth_weight: 0.4
+  brand_weight: 0.2
+
+# Customer sentiment analysis
+sentiment_analysis:
+  recent_review_weight: 1.0
+  old_review_weight: 0.5
+  min_reviews: 3
+  max_review_age_days: 180
+
+# Recommendation priorities
+priorities:
+  high_threshold: 0.7
+  medium_threshold: 0.4
+  low_threshold: 0.2
+
+# Logging configuration
+logging:
+  level: INFO
+  format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+  file: 'logs/expert_system.log'
+  max_size: 10485760  # 10MB
+  backup_count: 5
+
+# Cache configuration
+cache:
+  enabled: true
+  ttl: 3600  # 1 hour
+  max_size: 1000  # entries 
