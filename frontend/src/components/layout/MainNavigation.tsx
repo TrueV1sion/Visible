@@ -15,7 +15,8 @@ import {
   Description,
   Insights,
   Settings,
-  TrendingUp
+  TrendingUp,
+  PeopleAlt as PeopleAltIcon // Added for Customers
 } from '@mui/icons-material';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
@@ -25,6 +26,7 @@ const drawerWidth = 240;
 const menuItems = [
   { path: '/dashboard', label: 'Dashboard', icon: Dashboard },
   { path: '/battlecards', label: 'Battlecards', icon: Description },
+  { path: '/customers', label: 'Payer Customers', icon: PeopleAltIcon }, // Added new item
   { path: '/competitor-insights', label: 'Competitor Insights', icon: TrendingUp },
   { path: '/market-analysis', label: 'Market Analysis', icon: Insights },
   { path: '/settings', label: 'Settings', icon: Settings },

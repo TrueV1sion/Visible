@@ -8,6 +8,13 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
 
+# Import all models here so that Base has them registered:
+from app.models.customer import Customer # noqa
+# Add other models here, e.g.:
+# from app.models.user import User # noqa
+# from app.models.battlecard import Battlecard # noqa
+
+
 # Dependency
 def get_db():
     db = SessionLocal()

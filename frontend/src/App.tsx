@@ -16,6 +16,10 @@ import CompetitorAnalysis from './pages/CompetitorAnalysis';
 import ObjectionLibrary from './pages/ObjectionLibrary';
 import UseCases from './pages/UseCases';
 import Settings from './pages/Settings';
+import CustomersPage from './pages/CustomersPage';
+import CreateCustomerPage from './pages/CreateCustomerPage';
+import EditCustomerPage from './pages/EditCustomerPage';
+import CustomerDetailPage from './pages/CustomerDetailPage';
 
 // Protected Route Component
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -64,6 +68,14 @@ const App: React.FC = () => {
         <Route path="objection-library" element={<ObjectionLibrary />} />
         <Route path="use-cases" element={<UseCases />} />
         <Route path="settings" element={<Settings />} />
+
+        {/* Customer Routes */}
+        <Route path="customers">
+          <Route index element={<CustomersPage />} />
+          <Route path="new" element={<CreateCustomerPage />} />
+          <Route path=":customerId" element={<CustomerDetailPage />} />
+          <Route path=":customerId/edit" element={<EditCustomerPage />} />
+        </Route>
       </Route>
 
       {/* Catch all route */}
