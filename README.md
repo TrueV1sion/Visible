@@ -160,4 +160,41 @@ The platform implements comprehensive error handling:
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details. 
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
+
+## Grep Web Application
+
+A simple web application to perform `grep` searches within this repository.
+
+### Prerequisites
+
+- Python 3.7+
+- `pip` for installing Python packages
+- `grep` command available in the system PATH
+
+### Setup and Running
+
+1.  **Navigate to the root directory** of this repository if you are not already there.
+
+2.  **Ensure `app.py` and the `templates/` directory are present** in the root.
+
+3.  **Install dependencies:**
+    The application uses FastAPI. The required dependencies should already be listed in the main `requirements.txt` file. If you haven't installed them yet for the main project, you can do so by running:
+    ```bash
+    pip install -r requirements.txt
+    ```
+    Ensure `fastapi` and `uvicorn` are installed.
+
+4.  **Run the application:**
+    Use Uvicorn to run the FastAPI application. From the root directory of the repository:
+    ```bash
+    uvicorn app:app --reload --port 8001
+    ```
+    (Using port 8001 to avoid potential conflict with other services that might use port 8000).
+
+5.  **Access the application:**
+    Open your web browser and navigate to `http://127.0.0.1:8001`.
+
+    You can then enter a grep pattern and search the repository files.

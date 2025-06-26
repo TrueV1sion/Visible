@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grep Web App</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        .container { max-width: 800px; margin: auto; }
+        input[type="text"] { width: 70%; padding: 10px; margin-bottom: 10px; }
+        button { padding: 10px 15px; }
+        pre { background-color: #f4f4f4; padding: 15px; border: 1px solid #ddd; white-space: pre-wrap; word-wrap: break-word; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Grep Web App</h1>
+        <form id="searchForm">
+            <input type="text" id="pattern" name="pattern" placeholder="Enter grep pattern..." required>
+            <button type="submit">Search</button>
+        </form>
+        <h2>Results:</h2>
+        <pre id="resultsOutput">Search results will appear here.</pre>
+    </div>
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const pattern = document.getElementById('pattern').value;
+            const resultsOutput = document.getElementById('resultsOutput');
+            resultsOutput.textContent = 'Searching...';
+
+            try {
+                const response = await fetch('/search', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'pattern=' + encodeURIComponent(pattern)
+                });
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const results = await response.text();
+                resultsOutput.textContent = results || 'No results found.';
+            } catch (error) {
+                resultsOutput.textContent = 'Error performing search: ' + error.message;
+            }
+        });
+    </script>
+</body>
+</html>
